@@ -169,26 +169,37 @@ class AmbitoView(View):
         }
         return render(request, 'base_show.html', args)
     
+    @login_required()
     def create(request):
-        form = AmbitoForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-            aviso = "El ambito se ha creado con éxito"
-            all = Ambito.objects.filter(Eliminado=False)
-            args = {
-                "aviso":aviso,
-                "querys":all,
-                "titulo":"ambito",
-                "titulo_view":"Ambito"
-            }
-            return render(request, 'base_index.html', args )
+        if request.user:
+            usuario = request.user
+            permiso = request.user.has_perm("ModelsMaster.add_ambito")
+
+            form = AmbitoForm(request.POST or None)
+            if form.is_valid():
+                form.save()
+                aviso = "El ambito se ha creado con éxito"
+                all = Ambito.objects.filter(Eliminado=False)
+                args = {
+                    "aviso":aviso,
+                    "querys":all,
+                    "titulo":"ambito",
+                    "titulo_view":"Ambito"
+                }
+                return render(request, 'base_index.html', args )
+            else:
+                args = {
+                    'form': form,
+                    "titulo":"ambito",
+                    "titulo_view":"Ambito"
+                }
+                return render (request, 'base_form.html', args )
         else:
+            error = "No tienes permiso para crear un nuevo Ambito"
             args = {
-                'form': form,
-                "titulo":"ambito",
-                "titulo_view":"Ambito"
+                "error":error
             }
-            return render (request, 'base_form.html', args )
+            return render(request, 'index.html', args)
 
     def update(request,id):
         ambito = Ambito.objects.get(Id=id)
