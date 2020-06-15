@@ -23,7 +23,7 @@ class LogView(View):
                 # Recuperamos las credenciales validadas
                 username = form.cleaned_data['username']
                 password = form.cleaned_data['password']
-
+                
                 # Verificamos las credenciales del usuario
                 user = authenticate(username=username, password=password)
 
@@ -32,13 +32,20 @@ class LogView(View):
                     # Hacemos el login manualmente
                     do_login(request, user)
                     # Y le redireccionamos a la portada
-                    return redirect('/')
-
-        # Si llegamos al final renderizamos el formulario
-        arg={
-            'form': form
-        }
-        return render(request, "log/login.html", arg)
+                    #return redirect('')
+                    args = {
+                        "form":form
+                    }
+                    return render(request, "index.html", args)
+            else:
+                # Si hay errores
+                arg={
+                    'form': form
+                }
+                return render(request, "log/login.html", arg)
+        else:
+            #rendereizamos el formulario con un GET
+            return render(request, "log/login.html", args)
 
     def logout(request):
         # Finalizamos la sesión
@@ -168,27 +175,35 @@ class AmbitoView(View):
             "titulo_view":"Ambito"
         }
         return render(request, 'base_show.html', args)
-    
+
+    @login_required
     def create(request):
-        form = AmbitoForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-            aviso = "El ambito se ha creado con éxito"
-            all = Ambito.objects.filter(Eliminado=False)
-            args = {
-                "aviso":aviso,
-                "querys":all,
-                "titulo":"ambito",
-                "titulo_view":"Ambito"
-            }
-            return render(request, 'base_index.html', args )
+        if request.user.has_perm('ModelsMaster.add_ambito'):
+            form = AmbitoForm(request.POST or None)
+            if form.is_valid():
+                form.save()
+                aviso = "El ambito se ha creado con éxito"
+                all = Ambito.objects.filter(Eliminado=False)
+                args = {
+                    "aviso":aviso,
+                    "querys":all,
+                    "titulo":"ambito",
+                    "titulo_view":"Ambito"
+                }
+                return render(request, 'base_index.html', args )
+            else:
+                args = {
+                    'form': form,
+                    "titulo":"ambito",
+                    "titulo_view":"Ambito"
+                }
+                return render (request, 'base_form.html', args )
         else:
+            error = "No tienes permiso para crear un nuevo Ambito"
             args = {
-                'form': form,
-                "titulo":"ambito",
-                "titulo_view":"Ambito"
+                "error":error
             }
-            return render (request, 'base_form.html', args )
+            return render(request, 'index.html', args)
 
     def update(request,id):
         ambito = Ambito.objects.get(Id=id)
@@ -1777,15 +1792,23 @@ class UserEmpresaView(View):
         }
         return render(request, "UserEmpresa/index.html", args)
     
+    @login_required
     def show(request,id):
-        user_empresa = UserEmpresa.objects.get(Id=id)
-        form = UserEmpresaForm(instance=user_empresa)
-        args = {
-            "form":form,
-            "titulo":"user_empresa",
-            "titulo_view":"Usuario de Empresa"
-        }
-        return render(request, 'UserEmpresa/show.html', args)
+        if request.user.has_perm("ModelsMaster.view_userempresa"):
+            user_empresa = UserEmpresa.objects.get(Id=id)
+            form = UserEmpresaForm(instance=user_empresa)
+            args = {
+                "form":form,
+                "titulo":"user_empresa",
+                "titulo_view":"Usuario de Empresa"
+            }
+            return render(request, 'UserEmpresa/show.html', args)
+        else:
+            error="No tienes permiso para ver los Usuarios de Empresa"
+            args = {
+                "error":error
+            }
+            return render(request, "UserEmpresa/index.html", args)
 
     def create(request):
         form = UserEmpresaForm(request.POST or None)
