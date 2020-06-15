@@ -23,7 +23,7 @@ class LogView(View):
                 # Recuperamos las credenciales validadas
                 username = form.cleaned_data['username']
                 password = form.cleaned_data['password']
-
+                
                 # Verificamos las credenciales del usuario
                 user = authenticate(username=username, password=password)
 
@@ -32,13 +32,27 @@ class LogView(View):
                     # Hacemos el login manualmente
                     do_login(request, user)
                     # Y le redireccionamos a la portada
-                    return redirect('/')
-
-        # Si llegamos al final renderizamos el formulario
-        arg={
-            'form': form
-        }
-        return render(request, "log/login.html", arg)
+                    #return redirect('')
+                    args = {
+                        "form":form,
+                        "username":username,
+                        "password":password
+                    }
+                    return render(request, "index.html", args)
+            else:
+                # Si hay errores
+                username="si lees esto, eres marica"
+                arg={
+                    'form': form,
+                    "username":username
+                }
+                return render(request, "log/login.html", arg)
+        else:
+            args = {
+                "username":"ostia puta"
+            }
+            #rendereizamos el formulario con un GET
+            return render(request, "log/login.html", args)
 
     def logout(request):
         # Finalizamos la sesión
