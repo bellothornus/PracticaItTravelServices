@@ -78,5 +78,12 @@
             </div>
         </div>
         {% include 'modal_eliminar.html' %}
+        {% if error %}
+            <div class="alert alert-danger " role="alert">
+
+                <p> {{error}}</p>
+
+            </div> 
+        {% endif %}
     </body>
 </html>

@@ -34,23 +34,16 @@ class LogView(View):
                     # Y le redireccionamos a la portada
                     #return redirect('')
                     args = {
-                        "form":form,
-                        "username":username,
-                        "password":password
+                        "form":form
                     }
                     return render(request, "index.html", args)
             else:
                 # Si hay errores
-                username="si lees esto, eres marica"
                 arg={
-                    'form': form,
-                    "username":username
+                    'form': form
                 }
                 return render(request, "log/login.html", arg)
         else:
-            args = {
-                "username":"ostia puta"
-            }
             #rendereizamos el formulario con un GET
             return render(request, "log/login.html", args)
 
@@ -1799,15 +1792,23 @@ class UserEmpresaView(View):
         }
         return render(request, "UserEmpresa/index.html", args)
     
+    @login_required
     def show(request,id):
-        user_empresa = UserEmpresa.objects.get(Id=id)
-        form = UserEmpresaForm(instance=user_empresa)
-        args = {
-            "form":form,
-            "titulo":"user_empresa",
-            "titulo_view":"Usuario de Empresa"
-        }
-        return render(request, 'UserEmpresa/show.html', args)
+        if request.user.has_perm("ModelsMaster.view_userempresa"):
+            user_empresa = UserEmpresa.objects.get(Id=id)
+            form = UserEmpresaForm(instance=user_empresa)
+            args = {
+                "form":form,
+                "titulo":"user_empresa",
+                "titulo_view":"Usuario de Empresa"
+            }
+            return render(request, 'UserEmpresa/show.html', args)
+        else:
+            error="No tienes permiso para ver los Usuarios de Empresa"
+            args = {
+                "error":error
+            }
+            return render(request, "UserEmpresa/index.html", args)
 
     def create(request):
         form = UserEmpresaForm(request.POST or None)
