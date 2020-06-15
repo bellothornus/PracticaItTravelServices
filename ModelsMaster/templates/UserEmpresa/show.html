@@ -1,0 +1,45 @@
+{% load static %}
+<html>
+    <head>
+        <!-- Jquery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap 4 css-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <!-- Popper-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <!-- Bootstrap 4 javascript-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- Datatables css-->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+        <!-- Datatables Javascript-->
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <!-- Fontawesome.css (iconos de Bootstrap 4)-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Archivo local javascript para invocar el Datatable-->
+        <script type="text/javascript" src="{%static 'js/tabla_datos_show.js'%}" ></script>
+        <script type="text/javascript" src="{%static 'js/label_class.js'%}" ></script>
+        <script type="text/javascript" src="{%static 'js/show_css.js'%}"></script>
+        {% block head %}
+        
+        {% endblock %}
+    </head>
+    <body>
+        {%include 'navbar.html'%}
+        <h2>Mostrando {{titulo_view}}:</h2>
+        <div class="container">
+            {% for f in form %}
+            <div class="row form-group">
+                {{f.label_tag}}
+                <!--<label for="id_{{f.name}}" class="col-sm-2 col-form-label">{{f.name}}</label>
+                --><div class="col-sm-10">
+                    {{f}}
+                </div>
+            </div>
+            {%endfor%}
+            <div class="row justify-content-between">
+                <a class="btn btn-primary col-sm-4" href="/index/{{titulo}}">Volver atrás</a>
+                <a class="btn btn-primary col-sm-4" href="/edit/{{titulo}}/{{form.instance.Id}}">Editar</a>
+            </div>
+        </div>
+    </body>
+</html>

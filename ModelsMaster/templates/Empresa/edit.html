@@ -1,0 +1,30 @@
+{% extends '../base_form.html' %}
+    {% block head%}
+        <title>edit Empresa</title>
+    {% endblock %}
+    {% block body %}
+        <form action="/update/empresa/{{emp.id_emp}}" method="POST"> {% csrf_token %}
+            <select name="id_emp_sc">
+                {% for emp_sc in emp_scs %}
+                    {% if emp_sc.id_sc == emp.id_emp_sc.id_sc %}
+                        <option selected value="{{emp_sc.id_sc}}">{{emp_sc.str_sc_nombre}}</option>
+                    {% else %}
+                        <option value="{{emp_sc.id_sc}}">{{emp_sc.str_sc_nombre}}</option>
+                    {%endif%}
+                {% endfor %}
+            </select>
+            <input type="text" name="str_emp_nombre" value="{{emp.str_emp_nombre}}">
+            <input type="text" name="str_emp_descripcion" value="{% if emp.str_emp_descripcion %}{{emp.str_emp_descripcion}}{%endif%}">
+            <select name="id_emp_ag">
+                {% for emp_ag in emp_ags %}
+                    {% if emp_ag.id_ag == emp.id_emp_ag.id_ag %}
+                    <option selected value="{{emp.id_emp_ag.id_ag}}">{{emp.id_emp_ag.str_ag_nombre}}</option>
+                    {% else %}
+                    <option value="{{emp.id_emp_ag.id_ag}}">{{emp_ag.str_ag_nombre}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <input type="submit" value="Enviar">
+        </form>
+        <a href="/show/empresa/{{emp.id_emp}}">Volver atrás</a>
+    {% endblock%}

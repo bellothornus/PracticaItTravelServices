@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>
+            Area Geografica {{ag.str_ag_nombre}}/{{ag.id_ag}}
+        </title>
+    </head>
+    <body>
+        <h2>ID: {{ag.id_ag}}</h2>
+        <h2>Nombre:</h2>
+        <p>{{ag.str_ag_nombre}}</p>
+        <h2>Descripción:</h2>
+        {% if ag.str_ag_descripcion %}
+            <p>{{ag.str_ag_descripcion}}</p>
+        {% else %}
+            <p>No se ha encontrado descripción del ámbito</p>
+        {% endif %}
+        <h2>Padre:</h2>
+        {% comment %}
+         Aquí compruebo si el padre existe, si existe me pones su nombre,
+         y si no, me dices que no tiene Padre 
+        {% endcomment %}
+        {% if ag_parent == "nope" %}
+            <p>Esta Area Geográfica no depende de otra</p>
+        {% else %}
+            <p>{{ag_parent.str_ag_nombre}}</p>
+            <a href="/show/area_geografica/{{ag_parent.id_ag}}">Mira esta Area Geografica padre</a>
+            <br>
+        {% endif %}
+        <h2>Hijos:</h2>
+        {% if ag_childs %}
+            {% for ag_child in ag_childs %}
+                <p>{{ag_child.str_ag_nombre}}</p>
+                <a href="/show/area_geografica/{{ag_child.id_ag}}">Mira esta Área Geográfica hija</a>
+                <br>
+            {% endfor %}
+        {% else %}
+            <p>Esta Area Geográfica no tiene hijos</p>
+        {% endif %}
+        <a href="/edit/area_geografica/{{ag.id_ag}}">Editar</a>
+        <a href="/delete/area_geografica/{{ag.id_ag}}">Borrar</a>
+        <a href="/index/area_geografica">Volver atrás</a>
+    </body>
+</html>

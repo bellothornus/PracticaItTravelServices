@@ -1,0 +1,12 @@
+{% extends '../base_form.html' %}
+    {% block head%}
+        <title>edit sector</title>
+    {%endblock%}
+    {%block body%}
+        <form action="/update/sector/{{sector.id_sc}}" method="POST"> {% csrf_token %}
+        <input type="text" name="str_sc_nombre" value="{{sector.str_sc_nombre}}">
+        <input type="text" name="str_sc_descripcion" value="{% if sector.str_sc_descripcion %}{{sector.str_sc_descripcion}}{%endif%}">
+        <input type="submit" value="Enviar">
+        </form>
+        <a href="/show/sector/{{sector.id_sc}}">Volver atrás</a>
+    {%endblock%}

@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>
+            PuntosCapitulo {{pc.str_pc_nombre}}/{{pc.id_pc}}
+        </title>
+    </head>
+    <body>
+        <h2>ID: {{pc.id_pc}}</h2>
+        <h2>Nombre:</h2>
+        <p>{{pc.str_pc_nombre}}</p>
+        <br>
+        <h2>Descripción:</h2>
+        {% if pc.str_pc_descripcion %}
+            <p>{{pc.str_pc_descripcion}}</p>
+        {% else %}
+            <p>No se ha encontrado descripción de PuntosCapitulo</p>
+        {% endif %}
+        <h2>Modelo:</h2>
+        <p>{{pc.id_pc_md.str_md_nombre}}</p>
+        <h2>Ambito:</h2>
+        <p>{{pc.id_pc_am.str_am_nombre}}</p>
+        <a href="/edit/puntoscap/{{pc.id_pc}}">Editar</a>
+        <a href="/delete/puntoscap/{{pc.id_pc}}">Borrar</a>
+        <a href="/index/puntoscap">Volver atrás</a>
+    </body>
+</html>

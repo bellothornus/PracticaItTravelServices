@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>
+            Empresa {{emp.str_emp_nombre}}/{{emp.id_emp}}
+        </title>
+    </head>
+    <body>
+        <h2>ID: {{emp.id_emp}}</h2>
+        <h2>Nombre:</h2>
+        <p>{{emp.str_emp_nombre}}</p>
+        <br>
+        <h2>Descripción:</h2>
+        {% if emp.str_emp_descripcion %}
+            <p>{{emp.str_emp_descripcion}}</p>
+        {% else %}
+            <p>No se ha encontrado descripción de la Empresa</p>
+        {% endif %}
+        <h2>Sector:</h2>
+        <p>{{emp.id_emp_sc.str_sc_nombre}}</p>
+        <h2>Área Geográfica:</h2>
+        <p>{{emp.id_emp_ag.str_ag_nombre}}</p>
+        <a href="/edit/empresa/{{emp.id_emp}}">Editar</a>
+        <a href="/delete/empresa/{{emp.id_emp}}">Borrar</a>
+        <a href="/index/empresa">Volver atrás</a>
+    </body>
+</html>

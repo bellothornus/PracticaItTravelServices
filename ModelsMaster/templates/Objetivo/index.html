@@ -1,0 +1,36 @@
+{% extends '../base_index.html' %}
+    {% block head %}
+        <title>Indice de objmarkings</title>
+    {% endblock %}
+   
+    {% block thead %}
+    <th> ID: </th>
+    <th> Nombre:</th>
+    <th> Codificacion:</th>
+    <th> Descripcion:</th>
+    <th> Año:</th>
+    <th> Ver:</th>
+    <th> Editar:</th>
+    <th> Eliminar:</th>
+    {% endblock %}
+    {% block body %}
+    <a href="/new/objetivo">Crear nuevo objetivo</a>
+    {% endblock %}
+    {% block tbody %}
+        {% if objs %}
+            {% for obj in objs %}
+            <tr>
+                <td>{{obj.id_ob}}</td>
+                <td>{{obj.str_ob_nombre}}</td>
+                <td>{{obj.str_ob_codificacion}}</td>
+                <td>{{obj.str_ob_descripcion}}</td>
+                <td>{{obj.num_ob_any}}</td>
+                <td><a class="btn btn-xs far fa-eye" href="/show/objetivo/{{obj.id_ob}}"></a></td>
+                <td><a class="btn btn-primary btn-xs fas fa-pen" href="/edit/objetivo/{{obj.id_ob}}"></a></td>
+                <td><a class="btn btn-danger btn-xs  fas fa-trash-alt  fas fa-trash-alt" href="/delete/objetivo/{{obj.id_ob}}"></a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <h2>No se ha encontrado ningún objetivo creada</h2>
+        {% endif %}
+    {% endblock %}

@@ -1,0 +1,30 @@
+{% extends '../base_index.html' %}
+    {% block head %}
+        <title>Indice de Benchmarkings</title>
+    {% endblock %}
+   
+    {% block thead %}
+    <th> ID: </th>
+    <th> Nombre:</th>
+    <th> Ver:</th>
+    <th> Editar:</th>
+    <th> Eliminar:</th>
+    {% endblock %}
+    {% block body %}
+    <a href="/new/benchmarking">Crear nuevo Benchmarking</a>
+    {% endblock %}
+    {% block tbody %}
+        {% if benchs %}
+            {% for bench in benchs %}
+            <tr>
+                <td>{{bench.id_bench}}</td>
+                <td>{{bench.str_bench_nombre}}</td>
+                <td><a class="btn btn-xs far fa-eye" href="/show/benchmarking/{{bench.id_bench}}"></a></td>
+                <td><a class="btn btn-primary btn-xs fas fa-pen" href="/edit/benchmarking/{{bench.id_bench}}"></a></td>
+                <td><a class="btn btn-danger btn-xs  fas fa-trash-alt  fas fa-trash-alt" href="/delete/benchmarking/{{bench.id_bench}}"></a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <h2>No se ha encontrado ningún Benchmarking creada</h2>
+        {% endif %}
+    {% endblock %}

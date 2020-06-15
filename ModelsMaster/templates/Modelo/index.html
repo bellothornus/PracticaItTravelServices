@@ -1,0 +1,30 @@
+{% extends '../base_index.html' %}
+    {% block head %}
+        <title>Indice de Modelos</title>
+    {% endblock %}
+   
+    {% block thead %}
+    <th> ID: </th>
+    <th> Nombre:</th>
+    <th> Ver:</th>
+    <th> Editar:</th>
+    <th> Eliminar:</th>
+    {% endblock %}
+    {% block body %}
+    <a href="/new/modelo">Crear nuevo Modelo</a>
+    {% endblock %}
+    {% block tbody %}
+        {% if modelos %}
+            {% for modelo in modelos %}
+            <tr>
+                <td>{{modelo.id_md}}</td>
+                <td>{{modelo.str_md_nombre}}</td>
+                <td><a class="btn btn-xs far fa-eye" href="/show/modelo/{{modelo.id_md}}"></a></td>
+                <td><a class="btn btn-primary btn-xs fas fa-pen" href="/edit/modelo/{{modelo.id_md}}"></a></td>
+                <td><a class="btn btn-danger btn-xs  fas fa-trash-alt  fas fa-trash-alt" href="/delete/modelo/{{modelo.id_md}}"></a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <h2>No se ha encontrado ningún Modelo creado</h2>
+        {% endif %}
+    {% endblock %}

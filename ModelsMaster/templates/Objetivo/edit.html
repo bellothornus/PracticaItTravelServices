@@ -1,0 +1,41 @@
+{% extends '../base_form.html' %}
+    {% block head%}
+        <title>edit objetivos</title>
+    {% endblock %}
+    {% block body %}
+        <form action="/update/objetivo/{{obj.id_ob}}" method="POST"> {% csrf_token %}
+            <select name="id_ob_pc">
+                {% for obj_pc in obj_pcs %}
+                    {% if obj_pc.id_pc == obj.id_ob_pc.id_pc %}
+                    <option selected value="{{obj.id_ob_pc.id_pc}}">{{obj.id_ob_pc.str_pc_nombre}}</option>
+                    {% else %}
+                    <option value="{{obj.id_ob_pc.id_pc}}">{{obj_pc.str_pc_nombre}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <input type="text" name="str_ob_nombre" value="{{obj.str_ob_nombre}}">
+            <input type="text" name="str_ob_codificacion" value="{{obj.str_ob_codificacion}}">
+            <input type="text" name="str_ob_descripcion" value="{% if obj.str_ob_descripcion %}{{obj.str_ob_descripcion}}{%endif%}">
+            <input type="text" name="str_ob_any" value="{{obj.num_ob_any}}">
+            <select name="id_ob_to">
+                {% for obj_to in obj_tos %}
+                    {% if obj_to.id_to == obj.id_ob_to.id_to %}
+                    <option selected value="{{obj.id_ob_to.id_to}}">{{obj.id_ob_to.str_to_nombre}}</option>
+                    {% else %}
+                    <option value="{{obj.id_ob_to.id_to}}">{{obj_to.str_to_nombre}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <select name="id_ob_parent">
+                {% for objj in objs %}
+                    {% if objj.id_ob == obj.id_ob %}
+                    <option selected value="{{obj.id_ob}}">{{obj.str_ob_nombre}}</option>
+                    {% else %}
+                    <option value="{{obj.id_ob}}">{{obj.str_ob_nombre}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <input type="submit" value="Enviar">
+        </form>
+        <a href="/show/objetivo/{{obj.id_ob}}">Volver atrás</a>
+    {% endblock%}

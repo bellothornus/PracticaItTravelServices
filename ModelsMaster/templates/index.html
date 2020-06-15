@@ -1,0 +1,140 @@
+<html>
+    <head>
+        <title>
+            Indice
+        </title>
+        <!-- Jquery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap 4 javascript-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- Bootstrap 4 css-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        
+    </head>
+    <body>
+        {%include 'navbar.html'%}
+        <!--<nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+            </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+            </div>-->
+        <div class="container">
+            <h2>Mantenimiento de Tablas</h2>
+            <nav>
+                <div class="nav nav-tabs" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" role="tabpanel" data-toggle="tab" href="#nav-home">Tablas Maestras</a></li>
+                <a class="nav-item nav-link" id="nav-menu1-tab" role="tabpanel" data-toggle="tab" href="#nav-menu1">Objetivos</a></li>
+                <a class="nav-item nav-link" id="nav-menu2-tab" role="tabpanel" data-toggle="tab" href="#nav-menu2">Indicadores y Seguimiento</a></li>
+                <a class="nav-item nav-link" id="nav-menu3-tab" role="tabpanel" data-toggle="tab" href="#nav-menu3">Cuadro de mando</a></li>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <h4>Básicas</h4>
+                    <ul>
+                        <ol><a href="index/ambito">Ámbitos</a></ol>
+                        <ol><a href="index/puntos_cap">Capítulos</a></ol>
+                        <ol><a href="index/sector">sectores</a></ol>
+                        <ol><a href="index/nag">Niveles de áreas geográficas</a></ol>
+                        <ol><a href="index/tipo_objetivo">Tipos de Objetivos</a></ol>
+                        <ol><a href="index/estructura">Estructura de empresa</a></ol>
+                    </ul>
+                    <h4>Maestras</h4>
+                    <ul>
+                        <ol><a href="index/empresa">Empresas</a></ol>
+                        <ol><a href="index/area_geografica">Áreas geográficas</a></ol>
+                        <ol><a href="index/benchmarking">Benchmarking</a></ol>
+                    </ul>
+                    <h4>Sistemas de gestión</h4>
+                    <ul>
+                        <ol><a href="">Modelos de Gestión</a></ol>
+                        <ol><a href="index/documentos_sistema">Documentos del Sistema</a></ol>
+                        <ol><a href="index/proceso">Procesos</a></ol>
+                    </ul>
+                    <h4>IGNORAR:</h4>
+                    <ul>
+                        <ol><a href="index/user_empresa">Usuarios de Empresa</a></ol>
+                        <ol><a href="index/group_empresa">Grupos de Empresa</a></ol>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="nav-menu1" role="tabpanel" aria-labelledby="nav-menu1-tab">
+                    <ul>
+                        <ol><a href="index/objetivo">Objetivos</a></ol>
+                        <ol><a href="index/meta">Metas opr Objetivos</a></ol>
+                        <ol><a href="index/accionmeta">Acciones Meta</a></ol>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="nav-menu2" role="tabpanel" aria-labelledby="nav-menu2-tab">
+                    <ul>
+                        <ol><a href="index/indicador_accion_proceso">Indicador por Accion</a></ol>
+                        <ol><a href="index/seguimiento_indicadores">Seguimiento de Indicadores</a></ol>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="nav-menu3" role="tabpanel" aria-labelledby="nav-menu3-tab">
+                    <ul>
+                        <ol><a href="">Comparativas del sector y/o área</a></ol>
+                        <ol><a href="">Evolución Interna</a></ol>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+          
+        <!--<div class="container">
+            <h2>Mantenimiento de Tablas</h2>
+            <div class="container">
+                <h3>Mantenimiento de tablas Maestras:</h3>
+                <dl class="row">
+                    <dt class="col-sm-3"><a href="/index/ambito">Tabla de Ambitos</a></dt>
+                    <dd class="col-sm-9">Una sección para crear los ámbitos de las metas a acabar</dd>
+                    <dt class="col-sm-3"><a href="/index/estructura">Tabla de Estructura</a></dt>
+                    <dd class="col-sm-9">Una sección para crear Estructuras</dd>
+                    <dt class="col-sm-3"><a href="/index/riesgo">Tabla de Riesgo</a></dt>
+                    <dd class="col-sm-9">Una sección para crear los Riesgos</dd>
+                    <dt class="col-sm-3"><a href="/index/tipo_interviniente">Tabla de Tipos Interviniente</a></dt>
+                    <dd class="col-sm-9">Una sección para crear los Tipos Interviniente</dd>
+                    <dt class="col-sm-3"><a href="/index/sector">Tabla de Sector</a></dt>
+                    <dd class="col-sm-9">Una sección para crear los Sector</dd>
+                    <dt class="col-sm-3"><a href="/index/nag">Tabla de Nivel Área Geográfica</a></dt>
+                    <dd class="col-sm-9">Una sección para crear los Niveles de Áreas Geográficas</dd>
+                    <dt class="col-sm-3 text-truncate"><a href="/index/tipo_objetivo">Tabla de Tipo Objetivos</a></dt>
+                    <dd class="col-sm-9">Una sección para crear Tipos de Objetivo</dd>
+                </dl>
+            </div>
+            <h2>EL resto de Tablas:</h2>
+            <dl class="row">
+                <dt class="col-sm-3"><a href="/index/area_geografica">Tabla de Áreas Geográficas</a></dt>
+                <dd class="col-sm-9">Una sección para crear las Áreas Geográficas</dd>
+                <dt class="col-sm-3"><a href="/index/empresa">Tabla de Empresas</a></dt>
+                <dd class="col-sm-9">Una sección para crear las Empresas</dd>
+                <dt class="col-sm-3"><a href="/index/modelo">Tabla de Modelo</a></dt>
+                <dd class="col-sm-9">Una sección para crear los Modelos</dd>
+                <dt class="col-sm-3"><a href="/index/benchmarking">Tabla de Benchmarking</a></dt>
+                <dd class="col-sm-9">Una sección para crear los Benchmarking</dd>
+                <dt class="col-sm-3"><a href="/index/puntoscap">Tabla de PuntosCapitulo</a></dt>
+                <dd class="col-sm-9">Una sección para crear los Puntos capitulo</dd>
+                <dt class="col-sm-3"><a href="/index/objetivo">Tabla de Objetivos</a></dt>
+                <dd class="col-sm-9">Una sección para crear los Objetivos</dd>
+                <dt class="col-sm-3"><a href="/index/meta">Tabla de Metas</a></dt>
+                <dd class="col-sm-9">Una sección para crear las Metas</dd>
+                <dt class="col-sm-3"><a href="/index/accionmeta">Tabla de Accion Meta</a></dt>
+                <dd class="col-sm-9">Una sección para crear las Acciones Metas</dd>
+                <dt class="col-sm-3"><a href="/index/indicador_accion_proceso">Tabla de Indicador Accion Proceso</a></dt>
+                <dd class="col-sm-9">Una sección para crear los Indicadores Accion Proceso</dd>
+                <dt class="col-sm-3"><a href="/index/documentos_sistema">Tabla de Documentos del Sistema</a></dt>
+                <dd class="col-sm-9">Una sección para crear los Documentos del Sistema</dd>
+                <dt class="col-sm-3"><a href="/index/proceso">Tabla de Proceso</a></dt>
+                <dd class="col-sm-9">Una sección para crear los Procesos</dd>
+                <dt class="col-sm-3"><a href="/index/seguimiento_indicadores">Tabla de Seguimiento Indicadores</a></dt>
+                <dd class="col-sm-9">Una sección para crear los Seguimientos Indicadores</dd>
+            </dl>
+        </div>-->
+    </body>
+</html>

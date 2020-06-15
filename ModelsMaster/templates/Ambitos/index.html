@@ -1,0 +1,36 @@
+{% extends '../base_index.html' %}
+    {% block head %}
+        <title>Indice de ambitos</title>
+    {% endblock %}
+   
+    {% block thead %}
+    <th> ID: </th>
+    <th> Nombre:</th>
+    <th> Descripcion:</th>
+    <th> Ver:</th>
+    <th> Editar:</th>
+    <th> Eliminar:</th>
+    {% endblock %}
+    {% block body %}
+    <a href="/new/ambito">Crear nuevo Ambito</a>
+    {% endblock %}
+    {% block tbody %}
+        {% if ambitos %}
+            {% for ambito in ambitos %}
+            <tr>
+                <td>{{ambito.Id}}</td>
+                <td>{{ambito.Nombre}}</td>
+                <td>{{ambito.Descripcion}}</td>
+                <td><a class="btn btn-xs far fa-eye" href="/show/ambito/{{ambito.Id}}"></a></td>
+                <td><a class="btn btn-primary btn-xs fas fa-pen" href="/edit/ambito/{{ambito.Id}}"></a></td>
+                <td><a class="btn btn-danger btn-xs  fas fa-trash-alt  fas fa-trash-alt" href="/delete/ambito/{{ambito.Id}}"></a></td>
+                
+                <!--<td><a href="/show/ambito/{{ambito.id_am}}">Ver</a></td>
+                <td><a href="/edit/ambito/{{ambito.id_am}}">Editar</a></td>
+                <td><a href="/delete/ambito/{{ambito.id_am}}">Eliminar</a></td>-->
+            </tr>
+            {% endfor %}
+        {% else %}
+            <h2>No se han encontrado ningún ambito creado</h2>
+        {% endif %}
+    {% endblock %}

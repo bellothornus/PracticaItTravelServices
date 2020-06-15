@@ -1,0 +1,30 @@
+{% extends '../base_form.html' %}
+    {% block head%}
+        <title>edit Benchmarking</title>
+    {% endblock %}
+    {% block body %}
+        <form action="/update/benchmarking/{{bench.id_bench}}" method="POST"> {% csrf_token %}
+            <select name="id_bench_sc">
+                {% for bench_sc in bench_scs %}
+                    {% if bench_sc.id_sc == bench.id_bench_sc.id_sc %}
+                        <option selected value="{{bench_sc.id_sc}}">{{bench_sc.str_sc_nombre}}</option>
+                    {% else %}
+                        <option value="{{bench_sc.id_sc}}">{{bench_sc.str_sc_nombre}}</option>
+                    {%endif%}
+                {% endfor %}
+            </select>
+            <input type="text" name="str_bench_nombre" value="{{bench.str_bench_nombre}}">
+            <input type="text" name="str_bench_descripcion" value="{% if bench.str_bench_descripcion %}{{bench.str_bench_descripcion}}{%endif%}">
+            <select name="id_bench_ag">
+                {% for bench_ag in bench_ags %}
+                    {% if bench_ag.id_ag == bench.id_bench_ag.id_ag %}
+                    <option selected value="{{bench.id_bench_ag.id_ag}}">{{bench.id_bench_ag.str_ag_nombre}}</option>
+                    {% else %}
+                    <option value="{{bench.id_bench_ag.id_ag}}">{{bench_ag.str_ag_nombre}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <input type="submit" value="Enviar">
+        </form>
+        <a href="/show/benchmarking/{{bench.id_bench}}">Volver atrás</a>
+    {% endblock%}

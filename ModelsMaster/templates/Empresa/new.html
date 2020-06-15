@@ -1,0 +1,46 @@
+{% extends '../base_form.html' %}
+    {% block head %}
+        <title>new Empresa</title>
+    {% endblock %}
+    {% block body %}
+        <form action="/create/empresa" method="POST"> {% csrf_token %}
+        <div class="form-group row">
+            <label for="sector" class="col-sm-2 col-form-label">Sector de la Empresa</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="id_emp_sc" id="sector">
+                <option disabled selected value>Elige una opicón</option>
+                {% for emp_sc in emp_scs %}
+                    <option value="{{emp_sc.id_sc}}">{{emp_sc.str_sc_nombre}}</option>
+                {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="str_emp_nombre" id="nombre">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="descripcion" class="col-sm-2 col-form-label">Descripción:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="str_emp_descripcion" id="descripcion">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="ag" class="col-sm-2 col-form-label">Centro Principal:</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="id_emp_ag" id="ag">
+                    <option disabled selected value >Elige una opción</option>
+                    {% for emp_ag in emp_ags %}
+                        <option value="{{emp_ag.id_ag}}">{{emp_ag.str_ag_nombre}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <input type="submit" value="Enviar">
+        </form>
+        <a href="/index/empresa">Volver atrás</a>
+        <br>
+        </form>
+    {% endblock %}
