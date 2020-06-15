@@ -1,0 +1,34 @@
+{% extends '../base_index.html' %}
+    {% block head %}
+        <title>Indice de Riesgos</title>
+    {% endblock %}
+   
+    {% block thead %}
+    <th> ID: </th>
+    <th> Nombre:</th>
+    <th> Ver:</th>
+    <th> Editar:</th>
+    <th> Eliminar:</th>
+    {% endblock %}
+    {% block body %}
+    <a href="/new/riesgo">Crear nuevo Riesgo</a>
+    {% endblock %}
+    {% block tbody %}
+        {% if riesgos %}
+            {% for riesgo in riesgos %}
+            <tr>
+                <td>{{riesgo.id_rg}}</td>
+                <td>{{riesgo.str_rg_nombre}}</td>
+                <td><a class="btn btn-xs far fa-eye" href="/show/riesgo/{{riesgo.id_rg}}"></a></td>
+                <td><a class="btn btn-primary btn-xs fas fa-pen" href="/edit/riesgo/{{riesgo.id_rg}}"></a></td>
+                <td><a class="btn btn-danger btn-xs  fas fa-trash-alt" href="/delete/riesgo/{{riesgo.id_rg}}"></a></td>
+                
+                <!--<td><a href="/show/ambito/{{riesgo.id_rg}}">Ver</a></td>
+                <td><a href="/edit/ambito/{{riesgo.id_rg}}">Editar</a></td>
+                <td><a href="/delete/ambito/{{riesgo.id_rg}}">Eliminar</a></td>-->
+            </tr>
+            {% endfor %}
+        {% else %}
+            <h2>No se han encontrado ningún riesgo creado</h2>
+        {% endif %}
+    {% endblock %}

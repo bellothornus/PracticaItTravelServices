@@ -1,0 +1,32 @@
+{% extends '../base_form.html' %}
+    {% block head%}
+        <title>edit Area Geográfica</title>
+    {% endblock %}
+    {% block body %}
+        <form action="/update/area_geografica/{{ag.id_ag}}" method="POST"> {% csrf_token %}
+            <select name="id_ag_nag">
+                <option disabled selected value>Elige una opicón</option>
+                {% for nag in nags %}
+                    {% if nag.id_nag == ag.id_ag_nag.id_nag %}
+                        <option selected value="{{nag.id_nag}}">{{nag.str_nag_nombre}}</option>
+                    {% else %}
+                        <option value="{{nag.id_nag}}">{{nag.str_nag_nombre}}</option>
+                    {%endif%}
+                {% endfor %}
+            </select>
+            <input type="text" name="str_ag_nombre" value="{{ag.str_ag_nombre}}">
+            <input type="text" name="str_ag_descripcion" value="{% if ag.str_ag_descripcion %}{{ag.str_ag_descripcion}}{%endif%}">
+            <select name="id_ag_parent">
+                <option disabled selected value >SIN PADRE</option>
+                {% for area in ags %}
+                    {% if area.id_ag == ag.id_ag_parent.id_ag %}
+                    <option selected data-area-level="{{ag.id_ag_nag.num_nag_nivel}}" value="{{ag.id_ag}}">{{ag.str_ag_nombre}}</option>
+                    {% else %}
+                    <option data-area-level="{{area.id_ag_nag.num_nag_nivel}}" value="{{area.id_ag}}">{{area.str_ag_nombre}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <input type="submit" value="Enviar">
+        </form>
+        <a href="/show/area_geografica/{{ag.id_ag}}">Volver atrás</a>
+    {% endblock%}

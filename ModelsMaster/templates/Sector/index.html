@@ -1,0 +1,34 @@
+{% extends '../base_index.html' %}
+    {% block head %}
+        <title>Indice de Sectores</title>
+    {% endblock %}
+   
+    {% block thead %}
+    <th> ID: </th>
+    <th> Nombre:</th>
+    <th> Ver:</th>
+    <th> Editar:</th>
+    <th> Eliminar:</th>
+    {% endblock %}
+    {% block body %}
+    <a href="/new/sector">Crear nuevo Sector</a>
+    {% endblock %}
+    {% block tbody %}
+        {% if sectores %}
+            {% for sector in sectores %}
+            <tr>
+                <td>{{sector.id_sc}}</td>
+                <td>{{sector.str_sc_nombre}}</td>
+                <td><a class="btn btn-xs far fa-eye" href="/show/sector/{{sector.id_sc}}"></a></td>
+                <td><a class="btn btn-primary btn-xs fas fa-pen" href="/edit/sector/{{sector.id_sc}}"></a></td>
+                <td><a class="btn btn-danger btn-xs  fas fa-trash-alt" href="/delete/sector/{{sector.id_sc}}"></a></td>
+                
+                <!--<td><a href="/show/ambito/{{sector.id_sc}}">Ver</a></td>
+                <td><a href="/edit/ambito/{{sector.id_sc}}">Editar</a></td>
+                <td><a href="/delete/ambito/{{sector.id_sc}}">Eliminar</a></td>-->
+            </tr>
+            {% endfor %}
+        {% else %}
+            <h2>No se han encontrado ningún Sector creado</h2>
+        {% endif %}
+    {% endblock %}

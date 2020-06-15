@@ -1,0 +1,15 @@
+{% extends '../base_form.html' %}
+    {% block head%}
+        <title>edit Ambito</title>
+    {% endblock %}
+    {% block body %}
+        <form action="/update/ambito/{{ambito.Id}}" method="POST"> {% csrf_token %}
+            <input type="text" name="Nombre" value="{{ambito.Nombre}}">
+            <input type="text" name="Descripcion" value="
+            {% if ambito.Descripcion %}
+                {{ambito.Descripcion}}
+                {%endif%}">
+            <input type="submit" value="Enviar">
+        </form>
+        <a href="/show/ambito/{{ambito.Id}}">Volver atrás</a>
+    {% endblock%}

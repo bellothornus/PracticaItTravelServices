@@ -1,0 +1,11 @@
+{% extends '../base_form.html '%}
+    {% block head %}
+        <title>new TIpo Objetivo</title>
+    {%endblock%}
+    {% block body %}
+        <form action="/create/tipo_objetivo" method="POST"> {% csrf_token %}
+        <input type="text" name="str_to_nombre">
+        <input type="submit" value="Enviar">
+        </form>
+        <a href="/index/tipo_objetivo">Volver atrás</a>
+    {%endblock%}

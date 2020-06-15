@@ -1,0 +1,21 @@
+<!-- Modal -->
+<div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar {{titulo_view}}:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ¿Estás seguro de que quieres eliminar este registro?
+        </div>
+        <div class="modal-footer row justify-content-between">
+          <button type="button" class="btn btn-secondary col-sm-4" data-dismiss="modal">Cerrar</button>
+          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+          <a id="boton_eliminar" class="btn btn-danger btn-xs col-sm-4" href="/delete/{{titulo}}/{{query.Id}}">Eliminar</a>
+        </div>
+      </div>
+    </div>
+</div>

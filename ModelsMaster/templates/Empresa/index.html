@@ -1,0 +1,30 @@
+{% extends '../base_index.html' %}
+    {% block head %}
+        <title>Indice de Empresas</title>
+    {% endblock %}
+   
+    {% block thead %}
+    <th> ID: </th>
+    <th> Nombre:</th>
+    <th> Ver:</th>
+    <th> Editar:</th>
+    <th> Eliminar:</th>
+    {% endblock %}
+    {% block body %}
+    <a href="/new/empresa">Crear nueva Empresa</a>
+    {% endblock %}
+    {% block tbody %}
+        {% if emps %}
+            {% for emp in emps %}
+            <tr>
+                <td>{{emp.id_emp}}</td>
+                <td>{{emp.str_emp_nombre}}</td>
+                <td><a class="btn btn-xs far fa-eye" href="/show/empresa/{{emp.id_emp}}"></a></td>
+                <td><a class="btn btn-primary btn-xs fas fa-pen" href="/edit/empresa/{{emp.id_emp}}"></a></td>
+                <td><a class="btn btn-danger btn-xs  fas fa-trash-alt  fas fa-trash-alt" href="/delete/empresa/{{emp.id_emp}}"></a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <h2>No se ha encontrado ningúna Empresa creada</h2>
+        {% endif %}
+    {% endblock %}

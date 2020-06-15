@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>
+            Modelo {{modelo.str_md_nombre}}/{{modelo.id_md}}
+        </title>
+    </head>
+    <body>
+        <h2>ID: {{modelo.id_md}}</h2>
+        <h2>Nombre:</h2>
+        <p>{{modelo.str_md_nombre}}</p>
+        <br>
+        <h2>Descripción:</h2>
+        {% if modelo.str_md_descripcion %}
+            <p>{{modelo.str_md_descripcion}}</p>
+        {% else %}
+            <p>No se ha encontrado descripción del modelo</p>
+        {% endif %}
+        <a href="/edit/modelo/{{modelo.id_md}}">Editar</a>
+        <a href="/delete/modelo/{{modelo.id_md}}">Borrar</a>
+        <a href="/index/modelo">Volver atrás</a>
+    </body>
+</html>

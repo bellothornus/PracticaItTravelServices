@@ -1,0 +1,20 @@
+{% if hijos %}
+    <table id="myTable" class="display">
+        <thead>
+            <tr>
+                <th> ID: </th>
+                <th> Nombre:</th>
+                <th> Ver:</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for hijo in hijos%}
+        <tr>
+            <td>{{hijo.Id}}</td>
+            <td>{{hijo.Nombre}}</td>
+            <td><a class="btn btn-xs far fa-eye" href="/show/{{titulo}}/{{hijo.Id}}"></a></td>
+        </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+{%endif%}

@@ -1,0 +1,46 @@
+{% extends '../base_form.html' %}
+    {% block head %}
+        <title>new Area Geográfica</title>
+    {% endblock %}
+    {% block body %}
+        <form action="/create/area_geografica" method="POST"> {% csrf_token %}
+        <div class="form-group row">
+            <label for="nivel" class="col-sm-2 col-form-label">Nivel Área Geográfica</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="id_ag_nag" id="nivel">
+                <option disabled selected value>Elige una opicón</option>
+                {% for nag in nags %}
+                    <option value="{{nag.id_nag}}">{{nag.str_nag_nombre}}</option>
+                {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="str_ag_nombre" id="nombre">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="descripcion" class="col-sm-2 col-form-label">Descripción:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="str_ag_descripcion" id="descripcion">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="padre" class="col-sm-2 col-form-label">Área Geográfica Padre:</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="id_ag_parent" id="padre">
+                    <option disabled selected value >SIN PADRE</option>
+                    {% for ag in ags %}
+                        <option data-area-level="{{ag.id_ag_nag.num_nag_nivel}}" value="{{ag.id_ag}}">{{ag.str_ag_nombre}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <input type="submit" value="Enviar">
+        </form>
+        <a href="/index/area_geografica">Volver atrás</a>
+        <br>
+        </form>
+    {% endblock %}

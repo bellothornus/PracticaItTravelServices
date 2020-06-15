@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>
+            objetivo {{obj.str_ob_nombre}}/{{obj.id_ob}}
+        </title>
+    </head>
+    <body>
+        <h2>ID: {{obj.id_ob}}</h2>
+        <h2>Nombre:</h2>
+        <p>{{obj.str_ob_nombre}}</p>
+        <h2>Codificacion:</h2>
+        <p>{{obj.str_ob_codificacion}}</p>
+        <h2>Descripción:</h2>
+        {% if obj.str_ob_descripcion %}
+            <p>{{obj.str_ob_descripcion}}</p>
+        {% else %}
+            <p>No se ha encontrado descripción del objmarking</p>
+        {% endif %}
+        <h2>Año:</h2>
+        <p>{{obj.num_ob_any}}</p>
+        <h2>Tipo Objetivo:</h2>
+        <p>{{obj.id_ob_to.str_to_nombre}}</p>
+        <h2>Capitulo:</h2>
+        <p>{{obj.id_ob_pc.str_pc_nombre}}</p>
+        <h2>Padre:</h2>
+        {% if obj_parent %}
+            <p>{{obj_parent.str_ob_nombre}}</p>
+            <a href="/show/objetivo/{{obj_parent.id_ob}}">Haz click aquí pare ver el Padre</a>
+        {% else %}
+            <p>Este Objetivo no depende de otro</p>
+        {% endif %}
+        <h2>Hijos:</h2>
+        {% if obj_childs %}
+            {% for obj_child in obj_childs %}
+                <p>{{obj_child.str_ob_nombre}}</p>
+                <a href="/show/objetivo/{{obj_child.id_ob}}">Haz click aquí para ver el Hijo</a>
+            {% endfor %}
+        {% else %}
+            <p>Este objetivo no tiene otros dependiendo de él</p>
+        {% endif %}
+        <br>
+        <a href="/edit/objetivo/{{obj.id_ob}}">Editar</a>
+        <a href="/delete/objetivo/{{obj.id_ob}}">Borrar</a>
+        <a href="/index/objetivo">Volver atrás</a>
+    </body>
+</html>

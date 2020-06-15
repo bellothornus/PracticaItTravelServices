@@ -1,0 +1,11 @@
+{% extends '../base_form.html' %}
+    {% block head%}
+        <title>edit TIpo Objetivo</title>
+    {% endblock %}
+    {% block body %}
+        <form action="/update/tipo_objetivo/{{tipo_objetivo.id_to}}" method="POST"> {% csrf_token %}
+            <input type="text" name="str_to_nombre" value="{{tipo_objetivo.str_to_nombre}}">
+            <input type="submit" value="Enviar">
+        </form>
+        <a href="/show/tipo_objetivo/{{tipo_objetivo.id_to}}">Volver atrás</a>
+    {% endblock %}

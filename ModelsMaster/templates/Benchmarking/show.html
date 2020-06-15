@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>
+            Benchmarking {{bench.str_bench_nombre}}/{{bench.id_bench}}
+        </title>
+    </head>
+    <body>
+        <h2>ID: {{bench.id_bench}}</h2>
+        <h2>Nombre:</h2>
+        <p>{{bench.str_bench_nombre}}</p>
+        <br>
+        <h2>Descripción:</h2>
+        {% if bench.str_bench_descripcion %}
+            <p>{{bench.str_bench_descripcion}}</p>
+        {% else %}
+            <p>No se ha encontrado descripción del Benchmarking</p>
+        {% endif %}
+        <h2>Sector:</h2>
+        <p>{{bench.id_bench_sc.str_sc_nombre}}</p>
+        <h2>Área Geográfica:</h2>
+        <p>{{bench.id_bench_ag.str_ag_nombre}}</p>
+        <a href="/edit/benchmarking/{{bench.id_bench}}">Editar</a>
+        <a href="/delete/benchmarking/{{bench.id_bench}}">Borrar</a>
+        <a href="/index/benchmarking">Volver atrás</a>
+    </body>
+</html>

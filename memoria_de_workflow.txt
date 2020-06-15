@@ -1,0 +1,17 @@
+#esto es antes de hacer nada hacelro para crea runa nueva rama donde poenr tus mierdas
+git feature-begin "nombre que quieras"
+
+#con estos atajos haces un commit automatico que entiende el workflow
+git add .
+git auto
+
+#para hacer un push a origin/master
+git feature-end "nombre que quieras"
+
+#para hacer un merge QUE POR LO MENOS PUTO FUNCIONE hasta "nombre de la rama" desde "nombre que quieras"
+git feature-to-"nombre de la rama" "nombre que quieras"
+
+#esto es ya para hacer un push del origin/master local a origin/mster en remoto
+git publish-"nombre de la rama"
+
+#y con esto acabamos el camino de hacer los cambios y mergearlos al maste ry subirlos al repositorio
