@@ -169,12 +169,9 @@ class AmbitoView(View):
         }
         return render(request, 'base_show.html', args)
     
-    @login_required()
+    @login_required
     def create(request):
         if request.user.has_perm("ModelsMaster.add_ambito"):
-            #usuario = request.user
-            #permiso = request.user.has_perm("ModelsMaster.add_ambito")
-
             form = AmbitoForm(request.POST or None)
             if form.is_valid():
                 form.save()
