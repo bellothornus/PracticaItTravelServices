@@ -350,6 +350,7 @@ class TipoObjetivoView(View):
                 "error":error
             }
             return render(request, 'index.html', args)
+
     @login_required
     def create(request):
         if request.user.has_perm('ModelsMaster.add_tipoobjetivo'):
@@ -834,7 +835,7 @@ class SectorView(View):
                     "titulo":"sector",
                     "titulo_view":"Sector"
                 }
-            return render(request, 'Sector/index.html', args)
+            return render(request, 'base_index.html', args)
         else:
             error = "No tienes permiso para borrar un sector"
             args = {
@@ -962,7 +963,7 @@ class NivelAreaGeograficaView(View):
                     "titulo":"nag",
                     "titulo_view":"Nivel Área Geográfica"
                 }
-            return render(request, 'base_index.html', args)
+            return render(request, 'Nag/index.html', args)
         else:
             error = "No tienes permiso para crear un nivel area geografica"
             args = {
@@ -1369,7 +1370,6 @@ class ModeloView(View):
             return render(request, 'index.html', args)
             
 class BenchmarkingView(View):
-
     @login_required
     def index(request):
         if request.user.has_perm('ModelsMaster.view_benchmarking'):
@@ -1609,7 +1609,7 @@ class PuntosCapituloView(View):
                     "titulo":"puntoscap",
                     "titulo_view":"Puntos Capitulo"
                 }
-            return render(request, 'base_index.html', args)
+            return render(request, 'PuntosCapitulo/index.html', args)
         else:
             error = "No tienes permiso para borrar un punto capitulo"
             args = {
@@ -1740,7 +1740,6 @@ class ObjetivoView(View):
             return render(request, 'index.html', args)
 
 class MetaView(View):
-
     @login_required
     def index(request):
         if request.user.has_perm('ModelsMaster.view_meta'):
@@ -1868,7 +1867,6 @@ class MetaView(View):
             return render(request, 'index.html', args)
 
 class AccionMetaView(View):
-
     @login_required
     def index(request):
         if request.user.has_perm('ModelsMaster.view_accionmeta'):
@@ -1976,7 +1974,7 @@ class AccionMetaView(View):
                 "titulo":"accionmeta",
                 "titulo_view":"Accion Meta"
             }
-            return render(request, 'base_index.html', args)
+            return render(request, 'AccionMeta/index.html', args)
         else:
             error = "No tienes permiso para borrar una accion meta"
             args = {
