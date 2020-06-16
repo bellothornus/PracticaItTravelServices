@@ -69,8 +69,9 @@ class UserView(View):
     def show(request,id):
         if request.user.has_perm('ModelsMaster.view_user'):
             user = User.objects.get(id=id)
+            form = UserForm(instance=user)
             args = {
-                "user":user,
+                "form":form,
                 "titulo":"user",
                 "titulo_view":"Usuario"
             }
@@ -2611,3 +2612,37 @@ class GroupEmpresaView(View):
                 "titulo_view":"Grupo de Empresa"
             }
             return render(request, "base_form.html", args)
+
+    def update(request,id):
+        group_empresa=GroupEmpresa.objects.get(Id=id)
+        form = GroupEmpresaForm(request.POST or None, instance=group_empresa)
+        if form.is_valid():
+            form.save()
+            aviso="Se han actualizado los datos"
+            args={
+                "aviso":aviso,
+                "form":form,
+                "titulo":"group_empresa",
+                "titulo_view":"Grupo de Empresa"
+            }
+        else:
+            args = {
+                "form":form,
+                "titulo":"group_empresa",
+                "titulo_view":"Grupo de Empresa"
+            }
+        return render(request, "base_form.html", args)
+    
+    def delete(request,id):
+        group_empresa=GroupEmpresa.objects.get(Id=id)
+        group_empresa.Eliminado = True
+        group_empresa.save()
+        eliminado = "El Usuario de Empresa se ha eliminado"
+        all = GroupEmpresa.objects.filter(Eliminado=False)
+        args = {
+            "eliminado":eliminado,
+            "querys":all,
+            "titulo":"group_empresa",
+            "titulo_view":"Grupo de Empresa"
+        }
+        return render(request, "GroupEmpresa/index.html", args)
