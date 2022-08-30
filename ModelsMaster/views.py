@@ -8,7 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-#para ver la lista de permisos d eun usuairo
+#para ver la lista de permisos de un usuairo
 #perm_tuple = [(x.id, x.name) for x in Permission.objects.filter(user=2)]
 # Create your views here.
 class LogView(View):
